@@ -52,7 +52,6 @@ dev: stop build
 	docker run -it -v `pwd`:/outside \
           --name ${NAME} \
           --device /dev/snd \
-          --net=host \
           -e ARECORD_DEVICE=$(ARECORD_DEVICE) \
           -e RECEIVER_URL=$(RECEIVER_URL) \
           $(DOCKERHUB_ID)/$(NAME):$(VERSION) /bin/bash
@@ -62,7 +61,6 @@ run: stop
           --name ${NAME} \
           --restart unless-stopped \
           --device /dev/snd \
-          --net=host \
           -e ARECORD_DEVICE=$(ARECORD_DEVICE) \
           -e RECEIVER_URL=$(RECEIVER_URL) \
           $(DOCKERHUB_ID)/$(NAME):$(VERSION)
